@@ -43,7 +43,7 @@ function SocialLinks({isDark = false}: Props) {
         </a>
         <a href='https://discord.com' target='_blank' rel='noreferrer'>
             <Image
-            className={`${isDark ? "brightness-100" : "bg-black"}hover:opacity-50`}
+            className="hover:opacity-50"
             alt='discord'
             src={Discord}
             width={20}
