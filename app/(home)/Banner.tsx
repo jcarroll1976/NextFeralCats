@@ -6,11 +6,11 @@ type Props = {}
 
 function Banner() {
   return (
-    <section className='w-full h-20'>
+    <section className='w-full h-[400px]'>
         <Image
         src={Tabby}
         alt='Tabby Cat'
-        className='bg-cover'
+        className='object-cover h-[400px] w-full'
         />
 
     </section>
