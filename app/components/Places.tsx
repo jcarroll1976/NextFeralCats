@@ -19,7 +19,13 @@ type Props = {
 function Places({setFeedingSite}: Props) {
     const {ready, value, setValue, suggestions: {status, data}, clearSuggestions} = usePlacesAutocomplete();
   return (
-    <div>Places</div>
+    <Combobox onSelect={()=>{}}>
+        <ComboboxInput 
+        value={value} 
+        onChange={e => setValue(e.target.value)} 
+        className="w-full p-2" 
+        placeholder='Enter feeding site address' />
+    </Combobox>
   )
 }
 
