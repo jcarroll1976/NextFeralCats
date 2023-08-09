@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.19.2",
     "@types/google.maps": "^3.53.6",
     "@types/node": "20.4.7",
