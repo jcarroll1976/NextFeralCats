@@ -18,13 +18,32 @@ type Props = {
 
 function Places({setFeedingSite}: Props) {
     const {ready, value, setValue, suggestions: {status, data}, clearSuggestions} = usePlacesAutocomplete();
+
+    const handleSelect = async(val:string) => {
+        setValue(val, false);
+        clearSuggestions();
+
+        const results = await getGeocode({address: val});
+        const {lat, lng} = await getLatLng(results[0]);
+        setFeedingSite({lat, lng});
+    }
+    
   return (
-    <Combobox onSelect={()=>{}}>
+    <Combobox onSelect={()=>{handleSelect}}>
         <ComboboxInput 
         value={value} 
         onChange={e => setValue(e.target.value)} 
         className="w-full p-2" 
-        placeholder='Enter feeding site address' />
+        placeholder='Enter feeding site address' 
+        />
+        <ComboboxPopover>
+            <ComboboxList>
+                {status === "OK" &&
+                data.map(({place_id, description}) => (
+                    <ComboboxOption key={place_id} value={description} />
+                ))}
+            </ComboboxList>
+        </ComboboxPopover>
     </Combobox>
   )
 }
