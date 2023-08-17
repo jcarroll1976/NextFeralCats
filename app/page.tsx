@@ -4,15 +4,7 @@ import Image from 'next/image';
 import { useLoadScript } from "@react-google-maps/api";
 import Banner from './(home)/Banner';
 import Map from "../app/components/Map"
-
-const mapOptions = {
-  zoom: 12,
-  center: {
-    lat: 43.68,
-    lng: -79.43,
-  },
-}
-
+import Help from '../app/(home)/Help';
 
 export default function Home() {
   const {isLoaded} = useLoadScript({
@@ -25,6 +17,9 @@ export default function Home() {
   return (
     <main>
       <Banner />
+      <div>
+        <Help/>
+      </div>
       <Map />
     </main>
   )
