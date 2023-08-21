@@ -6,7 +6,7 @@ type Props = {}
 
 function Banner() {
   return (
-    <section className='w-full h-[400px]'>
+    <section>
         <Image
         src={Tabby}
         alt='Tabby Cat'
