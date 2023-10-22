@@ -30,7 +30,7 @@ function Navbar({}: Props) {
         width={40}
         className='fill-white'
         />
-        <h1 className='text-2xl font-bold'>Friends of Feral Felines</h1>
+        <h1 className='text-2xl font-["HelveticaNeueLT-Condensed",Arial,sans-serif"] font-bold'>Friends of Feral Felines</h1>
       </div>
       <AiOutlineMenu onClick={handleNav} className='absolute top-4 right-4 z-[99] md:hidden'/>
         {div ? (

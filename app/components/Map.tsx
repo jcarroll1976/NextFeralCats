@@ -49,26 +49,18 @@ const onLoad = useCallback((map: GoogleMap) => (mapRef.current = map),[]);
     </section>
   )
 }*/
-
-import { useState, useMemo, useCallback, useRef } from "react";
+import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import {
   GoogleMap,
   Marker,
-  DirectionsRenderer,
-  Circle,
-  MarkerClusterer,
 } from "@react-google-maps/api";
 import Places from "./Places";
-//import Distance from "./distance";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
-type DirectionsResult = google.maps.DirectionsResult;
 type MapOptions = google.maps.MapOptions;
 
 export default function Map() {
   const [office, setOffice] = useState<LatLngLiteral>();
-  const [selectedMarker, setSelectedMarker] = useState<LatLngLiteral>()
-  //const [directions, setDirections] = useState<DirectionsResult>();
   const mapRef = useRef<GoogleMap>();
   const center = useMemo<LatLngLiteral>(
     () => ({ lat: 42.241150, lng: -83.612991 }),
@@ -81,25 +73,13 @@ export default function Map() {
     }),
     []
   );
-  const onLoad = useCallback((map: GoogleMap | undefined) => (mapRef.current = map), []);
-  
-  /*const fetchDirections = (house: LatLngLiteral) => {
-    if (!office) return;
+  const onLoad = useCallback((map: GoogleMap) => (mapRef.current = map), []);
 
-    const service = new google.maps.DirectionsService();
-    service.route(
-      {
-        origin: house,
-        destination: office,
-        travelMode: google.maps.TravelMode.DRIVING,
-      },
-      (result, status) => {
-        if (status === "OK" && result) {
-          setDirections(result);
-        }
-      }
-    );
-  };*/
+  useEffect(() => {
+    if (office && mapRef.current) {
+      mapRef.current.panTo(office);
+    }
+  }, [office]);
 
   return (
     <div className="flex w-full h-48">
@@ -108,36 +88,28 @@ export default function Map() {
         <Places
           setOffice={(position) => {
             setOffice(position);
-            mapRef.current?.panTo(position);
           }}
         />
         {!office && <p>Enter the address of your office.</p>}
-        
       </div>
       <div className="w-[80%] h-48">
         <GoogleMap
-          zoom={14}
+          zoom={16}
           center={center}
           mapContainerClassName="w-full h-48"
           options={options}
-          //onLoad={onLoad}
+          onLoad={onLoad}
         >
-          
-
           {office && (
-            
-              <Marker
-                position={office}
-                //icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
-        
-              />
-
-             
+            <Marker
+              position={office}
+            />
           )}
         </GoogleMap>
       </div>
     </div>
   );
 }
+
 
 

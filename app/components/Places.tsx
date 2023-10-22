@@ -83,6 +83,7 @@ import usePlacesAutocomplete, {
       const results = await getGeocode({ address: val });
       const { lat, lng } = await getLatLng(results[0]);
       setOffice({ lat, lng });
+      setValue("");
     };
   
     return (
@@ -91,7 +92,7 @@ import usePlacesAutocomplete, {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           disabled={!ready}
-          className="w-full p-2"
+          className="w-full p-2 text-black"
           placeholder="Search office address"
         />
         <ComboboxPopover>
