@@ -82,21 +82,21 @@ export default function Map() {
   }, [office]);
 
   return (
-    <div className="flex w-full h-48">
+    <div className="flex w-full h-[600px]">
       <div className="w-[20%] p-4 bg-[#14161a] text-[#fff]">
-        <h1>Commute?</h1>
+        <h1>Feeding Locater</h1>
         <Places
           setOffice={(position) => {
             setOffice(position);
           }}
         />
-        {!office && <p>Enter the address of your office.</p>}
+        {/*{!office && <p>Enter the address of a feeding location.</p>}*/}
       </div>
-      <div className="w-[80%] h-48">
+      <div className="w-[80%] h-[600px]">
         <GoogleMap
           zoom={16}
           center={center}
-          mapContainerClassName="w-full h-48"
+          mapContainerClassName="w-full h-full"
           options={options}
           onLoad={onLoad}
         >

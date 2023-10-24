@@ -93,7 +93,7 @@ import usePlacesAutocomplete, {
           onChange={(e) => setValue(e.target.value)}
           disabled={!ready}
           className="w-full p-2 text-black"
-          placeholder="Search office address"
+          placeholder="Enter location here"
         />
         <ComboboxPopover>
           <ComboboxList>
